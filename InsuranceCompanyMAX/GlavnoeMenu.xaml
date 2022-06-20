@@ -1,0 +1,29 @@
+﻿<Window x:Name="glWindow" x:Class="InsuranceCompanyMAX.GlavnoeMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InsuranceCompanyMAX"
+        mc:Ignorable="d"
+        Title="Страховая компания &quot;МАКС&quot; - Главное меню" Height="600" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#FF003352" >
+        <Border MinWidth="400" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" Height="400">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="LightGray" ShadowDepth="0" />
+            </Border.Effect>
+            <StackPanel Margin="0,0,0,0">
+                <Grid>
+                    <Button x:Name="backBtn" Content="Выход" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Center"  Foreground="White" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Height="50" Click="backBtn_Click" FontWeight="Bold" Cursor="Hand" Style="{StaticResource LigtCoursor}" Width="77" FontSize="14"/>
+                    <Image Source="1277558722.png"  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="120" />
+                </Grid>
+                <TextBlock Text="Добро пожаловать!" HorizontalAlignment="Center" FontWeight="Bold" FontSize="22" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Margin="0 0 0 10"/>
+                <Button x:Name="clientsInfoBtn" Content="Клиенты" Margin="0 20 0 0" BorderBrush="#FF008BFF" Foreground="White" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Click="clientsInfoBtn_Click" Cursor="Hand" Height="32" Style="{StaticResource LigtCoursor}" FontSize="16"/>
+                <Button x:Name="AgBtn" Content="Агенты" Margin="0 20 0 0" BorderBrush="#FF008BFF" Foreground="White" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Click="AgBtn_Click" Height="32" Style="{StaticResource LigtCoursor}" FontSize="16" Cursor="Hand"/>
+                <Button x:Name="contractsBN" Content="Договора" Margin="0 20 0 0"  BorderBrush="#FF008BFF" Foreground="White" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Click="contractsBN_Click" Height="32" Style="{StaticResource LigtCoursor}" FontSize="16" Cursor="Hand"/>
+                <Button x:Name="casesBN" Content="Страховые случаи" Margin="0 20 0 0" BorderBrush="#FF008BFF" Foreground="White" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Click="casesBN_Click" Cursor="Hand" Height="32" Style="{StaticResource LigtCoursor}" FontSize="16"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9ddf90756464ddc84cd3b949003bef4" Name="Diagram1">
+        <EntityTypeShape EntityType="InsuranceCompanyMAXModel.Agent" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceCompanyMAXModel.Client" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceCompanyMAXModel.Contract" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceCompanyMAXModel.InsuranceCase" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceCompanyMAXModel.sysdiagram" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InsuranceCompanyMAXModel.TypeOfInsurance" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="InsuranceCompanyMAXModel.FK_Agent_TypeOfInsurance" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceCompanyMAXModel.FK_Contract_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceCompanyMAXModel.FK_Contract_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceCompanyMAXModel.FK_Contract_InsuranceCase" ManuallyRouted="false" />
+        <AssociationConnector Association="InsuranceCompanyMAXModel.FK_InsuranceCase_TypeOfInsurance" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

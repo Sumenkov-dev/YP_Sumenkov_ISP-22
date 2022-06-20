@@ -1,0 +1,71 @@
+﻿<Window x:Name="dobavitCourseWindow" x:Class="InsuranceCompanyMAX.DobavlenieDogovoraWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InsuranceCompanyMAX"
+        mc:Ignorable="d"
+        Title="Страховая компания &quot;МАКС&quot; - Добавление договора"  Height="650" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#FF003352">
+        <Border Height="600" Background="White" MaxWidth="450" Padding="30">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <TextBlock TextWrapping="Wrap" Text="Заполните все поля!" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Proxima Nova Rg" FontSize="24" Margin="0,0,0,0"/>
+
+                </StackPanel>
+                <DatePicker x:Name="dateCoursePicker" HorizontalContentAlignment="Center" SelectedDate="{Binding date}"  materialDesign:HintAssist.Hint="Дата"  FontFamily="Proxima Nova Rg" FontSize="17" Margin="0,20,0,0" HorizontalAlignment="Center" Width="150" Height="43"/>
+                <ComboBox x:Name="casesCombo" SelectedItem="{Binding InsuranceCase}" DisplayMemberPath="Name" materialDesign:HintAssist.Hint="Страховой случай" Style="{StaticResource MaterialDesignFloatingHintComboBox}"   FontFamily="Proxima Nova Rg" HorizontalAlignment="Stretch" FontSize="17" Cursor="Arrow" Margin="0,20,0,20" SelectionChanged="casesCombo_SelectionChanged"/>
+
+                <ComboBox x:Name="agentCombo" SelectedItem="{Binding Agent}" DisplayMemberPath="fio" materialDesign:HintAssist.Hint="Агент" Style="{StaticResource MaterialDesignFloatingHintComboBox}"   FontFamily="Proxima Nova Rg" HorizontalAlignment="Stretch" FontSize="17" Cursor="Arrow" IsEnabled="False" />
+
+                <ComboBox x:Name="clientCombo" SelectedItem="{Binding Client}" DisplayMemberPath="Name" materialDesign:HintAssist.Hint="Клиент" Style="{StaticResource MaterialDesignFloatingHintComboBox}"   FontFamily="Proxima Nova Rg" HorizontalAlignment="Stretch" FontSize="17" Cursor="Arrow" Margin="0,20,0,0"/>
+
+                <TextBox x:Name="yearsBox" Text="{Binding years}" materialDesign:HintAssist.Hint="Кол-во лет" Style="{StaticResource MaterialDesignFloatingHintTextBox}"   FontFamily="Proxima Nova Rg" HorizontalAlignment="Stretch" FontSize="17" Cursor="Arrow" Margin="0,20,0,0" PreviewTextInput="yearsBox_PreviewTextInput" TextChanged="yearsBox_TextChanged" />
+
+                <TextBox x:Name="sumBox" Text="{Binding sum}" materialDesign:HintAssist.Hint="Сумма" Style="{StaticResource MaterialDesignFloatingHintTextBox}"   FontFamily="Proxima Nova Rg" HorizontalAlignment="Stretch" FontSize="17" Cursor="Arrow" Margin="0,20,0,0" IsReadOnly="True" PreviewTextInput="sumBox_PreviewTextInput"  />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,55,0,0">
+                    <Button x:Name="saveBtn" 
+                Content="Сохранить"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="118"
+                Height="42"
+                Background="#FF024884"
+                Foreground="White"
+                BorderBrush="Black"
+                Click="saveBtn_Click"
+                    Grid.Row="1" Cursor="Hand" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Margin="0,0,20,0" FontSize="15">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button x:Name="cancelBtn" 
+                Content="Отмена"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="118"
+                Height="42"
+                Background="#FF024884"
+                Foreground="White"
+                BorderBrush="Black"
+                Click="cancelBtn_Click"
+                    Grid.Row="1" Cursor="Hand" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" FontSize="15">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+</Window>

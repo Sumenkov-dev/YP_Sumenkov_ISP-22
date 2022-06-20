@@ -1,0 +1,86 @@
+﻿<Window x:Name="clAccountsWindow" x:Class="InsuranceCompanyMAX.ContractsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InsuranceCompanyMAX"
+        mc:Ignorable="d"
+        Title="Страховая компания &quot;МАКС&quot; - Договора" Height="800" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#FF003352">
+
+        <Border Background="White" Height="700" VerticalAlignment="Center" MaxWidth="900" Padding="15,15,15,15">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition />
+
+                </Grid.RowDefinitions>
+                <Image Source="1277558722.png"  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="120" />
+
+                <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+
+                    <Button x:Name="addBtn" ToolTip="Добавить договор"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50"  Foreground="White" BorderBrush="{x:Null}" Click="addBtn_Click" Grid.Row="0" Cursor="Hand" FontFamily="Proxima Nova Rg" Style="{StaticResource LigtCoursor}" Visibility="Hidden">
+                        
+                        <materialDesign:PackIcon Kind="Plus" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    </Button>
+                </StackPanel>
+                <Button x:Name="backBtn" Content="Выход" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource LigtCoursor}" Foreground="White" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro" Height="50" Click="backBtn_Click" FontWeight="Bold" Cursor="Hand" Width="77"/>
+                <DataGrid x:Name="dgContracts" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" FontFamily="/InsuranceCompanyMAX;component/Fonts/#Source Sans Pro">
+                    <DataGrid.Columns>
+                        
+                        <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Агент" Binding="{Binding Agent.fio}" Width="150" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Страховой случай" Binding="{Binding InsuranceCase.Name}" Width="130">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Дата" Width="150" Binding="{Binding date, StringFormat=dd-MM-yyyy}">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Клиент" Binding="{Binding Client.Name}" Width="200">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Кол-во лет" Binding="{Binding years}" Width="100">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Сумма" Binding="{Binding sum, StringFormat={}{0} руб.}" Width="130">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

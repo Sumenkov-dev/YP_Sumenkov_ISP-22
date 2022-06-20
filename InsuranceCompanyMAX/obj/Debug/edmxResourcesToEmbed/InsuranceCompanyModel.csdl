@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InsuranceCompanyMAXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dateOfEntry" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="InsuranceTypeID" Type="Int32" Nullable="false" />
+    <Property Name="SerNumPass" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AgAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TypeOfInsurance" Relationship="Self.FK_Agent_TypeOfInsurance" FromRole="Agent" ToRole="TypeOfInsurance" />
+    <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_Agent" FromRole="Agent" ToRole="Contract" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="inn" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_Client" FromRole="Client" ToRole="Contract" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentID" Type="Int32" Nullable="false" />
+    <Property Name="InsuranceCaseID" Type="Int32" Nullable="false" />
+    <Property Name="ClientID" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="years" Type="Int32" Nullable="false" />
+    <Property Name="sum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK_Contract_Agent" FromRole="Contract" ToRole="Agent" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Contract_Client" FromRole="Contract" ToRole="Client" />
+    <NavigationProperty Name="InsuranceCase" Relationship="Self.FK_Contract_InsuranceCase" FromRole="Contract" ToRole="InsuranceCase" />
+  </EntityType>
+  <EntityType Name="InsuranceCase">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InsuranceTypeID" Type="Int32" Nullable="false" />
+    <Property Name="costInYear" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_InsuranceCase" FromRole="InsuranceCase" ToRole="Contract" />
+    <NavigationProperty Name="TypeOfInsurance" Relationship="Self.FK_InsuranceCase_TypeOfInsurance" FromRole="InsuranceCase" ToRole="TypeOfInsurance" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TypeOfInsurance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Agents" Relationship="Self.FK_Agent_TypeOfInsurance" FromRole="TypeOfInsurance" ToRole="Agent" />
+    <NavigationProperty Name="InsuranceCases" Relationship="Self.FK_InsuranceCase_TypeOfInsurance" FromRole="TypeOfInsurance" ToRole="InsuranceCase" />
+  </EntityType>
+  <Association Name="FK_Agent_TypeOfInsurance">
+    <End Role="TypeOfInsurance" Type="Self.TypeOfInsurance" Multiplicity="1" />
+    <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfInsurance">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Agent">
+        <PropertyRef Name="InsuranceTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Agent">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_InsuranceCase">
+    <End Role="InsuranceCase" Type="Self.InsuranceCase" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InsuranceCase">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="InsuranceCaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InsuranceCase_TypeOfInsurance">
+    <End Role="TypeOfInsurance" Type="Self.TypeOfInsurance" Multiplicity="1" />
+    <End Role="InsuranceCase" Type="Self.InsuranceCase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfInsurance">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InsuranceCase">
+        <PropertyRef Name="InsuranceTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InsuranceCompanyMAXEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Contracts" EntityType="Self.Contract" />
+    <EntitySet Name="InsuranceCases" EntityType="Self.InsuranceCase" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TypeOfInsurances" EntityType="Self.TypeOfInsurance" />
+    <AssociationSet Name="FK_Agent_TypeOfInsurance" Association="Self.FK_Agent_TypeOfInsurance">
+      <End Role="TypeOfInsurance" EntitySet="TypeOfInsurances" />
+      <End Role="Agent" EntitySet="Agents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Agent" Association="Self.FK_Contract_Agent">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Client" Association="Self.FK_Contract_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_InsuranceCase" Association="Self.FK_Contract_InsuranceCase">
+      <End Role="InsuranceCase" EntitySet="InsuranceCases" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InsuranceCase_TypeOfInsurance" Association="Self.FK_InsuranceCase_TypeOfInsurance">
+      <End Role="TypeOfInsurance" EntitySet="TypeOfInsurances" />
+      <End Role="InsuranceCase" EntitySet="InsuranceCases" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
